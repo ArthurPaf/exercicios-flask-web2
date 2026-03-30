@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Simulador de Investimento</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Simulador: Juros {{ aba|capitalize }}</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="/" class="{% if aba == 'simples' %}secondary{% else %}outline{% endif %}">Simples</a></li>
+                <li><a href="/compostos" class="{% if aba == 'compostos' %}secondary{% else %}outline{% endif %}">Compostos (Bônus)</a></li>
+            </ul>
+        </nav>
+
+        <article>
+            <form method="POST">
+                <label>Capital Inicial (R$):</label>
+                <input type="number" step="0.01" name="capital" required>
+                
+                <label>Taxa de Juros Mensal (%):</label>
+                <input type="number" step="0.1" name="taxa" required>
+                
+                <label>Tempo (meses):</label>
+                <input type="number" name="tempo" required>
+                
+                <button type="submit">Calcular</button>
+            </form>
+        </article>
+
+        {% if dados %}
+            <ins>
+                <strong>Resultado ({{ dados.tipo }}):</strong><br>
+                Capital: R$ {{ "%.2f"|format(dados.capital) }}<br>
+                Juros: R$ {{ "%.2f"|format(dados.juros) }}<br>
+                <strong>Total: R$ {{ "%.2f"|format(dados.montante) }}</strong>
+            </ins>
+        {% endif %}
+
+        {% if erro %}
+            <mark style="background: #ff5555; color: white;">{{ erro }}</mark>
+        {% endif %}
+    </main>
+</body>
+</html>

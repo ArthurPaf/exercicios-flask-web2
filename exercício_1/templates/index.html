@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Conversor de Temperatura</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Conversor de Temperatura</h1>
+        
+        <form method="POST">
+            <label for="celsius">Temperatura em Celsius (°C):</label>
+            <input type="text" id="celsius" name="celsius" placeholder="Ex: 25" required>
+            <button type="submit">Converter para Fahrenheit</button>
+        </form>
+
+        {% if resultado %}
+            <article style="background-color: #d4edda; color: #155724;">
+                {{ resultado }}
+            </article>
+        {% endif %}
+
+        {% if erro %}
+            <article style="background-color: #f8d7da; color: #721c24;">
+                {{ erro }}
+            </article>
+        {% endif %}
+    </main>
+</body>
+</html>
